@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <text>展示日期和时间选择的组件</text>
-<view>组件开始</view>
+<view>没有给定初始时间的组件</view>
 <view>
   <text>选择时间: </text>
   <datetimepicker
@@ -8,4 +8,12 @@
       bind:datetimechange="bindchange"
     ></datetimepicker>
 </view>
-<view>组件结束</view>
+
+<view>给定初始时间的组件</view>
+<view>
+  <text>选择时间: </text>
+  <datetimepicker
+      config="{{datetimepicker_config2}}"
+      bind:datetimechange="bindchange"
+    ></datetimepicker>
+</view>

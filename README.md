@@ -23,9 +23,13 @@ A component for datetimepicker in the mini-program.
 # 配置
 ```
 config = {
+    placeholder: "没有选择时间时的提示文字",
+    "init_datetime": "2019-11-11T00:00:00",
 }
 ```
 
 
 # 代办事项
-* [ ] 支持各种形式的datetimepicker
+* [ ] 选择月份和年份后，日期要自动变更
+* [ ] 支持各种形式输出和显示格式
+* [ ] 支持各种年份, 最大值最小值
