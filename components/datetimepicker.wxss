@@ -1,0 +1,4 @@
+/* components/datetimepicker.wxss */
+.datetimepicker .placeholder {
+  color: #ccc;
+}
