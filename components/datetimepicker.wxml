@@ -1,18 +1,12 @@
 <!--components/datetimepicker.wxml-->
 <view class="datetimepicker">
-  <picker range="{{range}}" mode="multiSelector" bindchange="bindchange" range-key="text" bindcolumnchange="bindcolumnchange">
+  <picker range="{{range}}" mode="multiSelector"
+      bindchange="bindchange" range-key="text"
+      bindcolumnchange="bindcolumnchange" value="{{selected_value}}">
     <span wx:if="{{date_str}}" class="">{{date_str}}</span>
-    <span wx:else class="placeholder">{{config_inner.placeholder}}</span>
+    <span wx:else class="placeholder">{{placeholder}}</span>
   </picker>
   <!--调试使用-->
-  <view>
-    <span>selected_value</span>
-    <span>{{selected_value.year}}</span>
-    <span>{{selected_value.month}}</span>
-    <span>{{selected_value.day}}</span>
-    <span>{{selected_value.hour}}</span>
-    <span>{{selected_value.minute}}</span>
-  </view>
   <!--
   -->
 </view>
