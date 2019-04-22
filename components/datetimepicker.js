@@ -1,4 +1,15 @@
 // components/datetimepicker.js
+function get_range_column(start, end, format) {
+  var result = []
+  for (var i=start; i<=end; i++) {
+    result.push({
+      "text": `${i}${format}`,
+      "value": i,
+    })
+  }
+  return result;
+}
+
 function get_initial_range() {
   var YEAR_RANGE = []
   for (var i=2018; i<=2021; i++) {
@@ -36,11 +47,6 @@ function date2object(date) {
     "minute": date.getMinutes(),
     "second": date.getSeconds(),
   }
-}
-
-function range_to_value(range, selected_value) {
-  // 找到range里面每一列对应的value
-  var result = [ ]
 }
 
 Component({
@@ -125,17 +131,18 @@ Component({
       })
     },
     bindcolumnchange: function(res) {
+      this.data.selected_value[res.detail.column] = res.detail.value;
+      this.setData({
+        "selected_value": this.data.selected_value,
+      })
       var name = this.data.column_match[res.detail.column];
       switch (name) {  // 如果修改了年和月，可能要更改日
         case "year":
         case "month":
           // TODO 需要根据选择的年和月来修改日期列
+          this.refresh_range();
           break
       }
-      this.data.selected_value[res.detail.column] = res.detail.value;
-      this.setData({
-        "selected_value": this.data.selected_value,
-      })
     },
     update_value: function() {
       console.info("根据当前选择的date，设置选择好的时间");
@@ -173,6 +180,50 @@ Component({
       this.setData({
         "selected_value": this.data.selected_value,
       })
+    },
+    refresh_range: function() {
+      var year_index = this.data.column_match_reverse["year"];
+      var year = this.data.range[year_index][
+        this.data.selected_value[year_index]
+      ].value
+      var month_index = this.data.column_match_reverse["month"];
+      var month = this.data.range[month_index][
+        this.data.selected_value[month_index]
+      ].value
+      console.info(`选择了${year}年${month}月`)
+      switch (month) {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+          var day_length = 31;
+          break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+          var day_length = 30;
+          break;
+        case 2:
+          var leap = year % 400 == 0 || ( year % 4 == 0 && year % 100 != 0)
+          var day_length = leap ? 29 : 28;
+          break
+        default:
+          throw Error(`这个月份有误${month}`)
+      }
+      console.info("需要变成", day_length);
+      var day_index = this.data.column_match_reverse["day"]
+      if (this.data.range[day_index].length != day_length) {
+        console.info("需要重新设置range");
+        this.data.range[day_index] = get_range_column(1, day_length, "日")
+        this.setData({
+          "range": this.data.range,
+        })
+        // TODO 重新设置range后要看selected_value是否要处理
+      }
     },
   }
 })
