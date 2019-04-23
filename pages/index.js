@@ -17,4 +17,12 @@ Page({
     console.info(res.detail.date);
     console.info(res.detail.date_str);
   },
+  change_config: function() {
+    this.data.datetimepicker_config2.init_datetime = "2018-11-11T01:02:03"
+    this.data.datetimepicker_config.init_datetime = "2018-11-11T01:02:03"
+    this.setData({
+      "datetimepicker_config": this.data.datetimepicker_config,
+      "datetimepicker_config2": this.data.datetimepicker_config2
+    })
+  }
 })

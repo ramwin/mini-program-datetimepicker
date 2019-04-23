@@ -17,3 +17,5 @@
       bind:datetimechange="bindchange"
     ></datetimepicker>
 </view>
+
+<button bind:tap="change_config">修改config输入的起始时间</button>
