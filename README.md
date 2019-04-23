@@ -6,6 +6,15 @@ A component for datetimepicker in the mini-program.
 
 后来也尝试了[`wx_date_picker`](https://github.com/Huge-HD/wx_date_picker)，很可惜没有写成组件，页面其他内容也不够干净。所以也放弃了. 干脆自己写一个
 
+# 功能特点
+* 封装成组件，方便调用，接口简单
+* 支持年份，月份变更时，日期自动变更
+
+# 效果图
+![效果图1](./example/01.png)
+![效果图2](./example/02.png)
+![效果图3](./example/03.png)
+
 # 安装使用
 直接把components文件夹下的datetimepicker复制到自己的项目即可,
 [参考demo](./pages/index.wxml)
@@ -30,6 +39,6 @@ config = {
 
 
 # 代办事项
-* [ ] 选择月份和年份后，日期要自动变更
+* [x] 选择月份和年份后，日期要自动变更
 * [ ] 支持各种形式输出和显示格式
 * [ ] 支持各种年份, 最大值最小值
