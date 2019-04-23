@@ -6,7 +6,9 @@
     <span wx:if="{{date_str}}" class="">{{date_str}}</span>
     <span wx:else class="placeholder">{{placeholder}}</span>
   </picker>
-  <!--调试使用-->
   <!--
-  -->
+  <view>
+    <span>{{selected_value}}</span>
+  </view>
+  调试使用-->
 </view>

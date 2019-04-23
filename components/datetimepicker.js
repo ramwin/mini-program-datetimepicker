@@ -223,6 +223,13 @@ Component({
           "range": this.data.range,
         })
         // TODO 重新设置range后要看selected_value是否要处理
+        if (this.data.selected_value[day_index] >= this.data.range[day_index].length) {
+          this.data.selected_value[day_index] = 
+            this.data.range[day_index].length - 1;
+          this.setData({
+            "selected_value": this.data.selected_value,
+          })
+        }
       }
     },
   }
